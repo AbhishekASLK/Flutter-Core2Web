@@ -8,58 +8,77 @@ class Assignment3 extends StatefulWidget {
 }
 
 class _Assignment3State extends State<Assignment3> {
-  int? selectedIndex = 0;
-  final List<String> imageList = [
-    'https://www.biencaps.com/static/media/shashi-sir.ce188ff3.png',
-    'https://www.biencaps.com/static/media/pramod-sir.c5ece1cb.png',
-    'https://www.biencaps.com/static/media/shriyash-sir.8007e498.png'
+  int index = 0;
+  String label = '';
+  List<String> imageList = [
+    'https://pics.craiyon.com/2023-06-09/45d985994b52426a9e56a258a8a42e55.webp',
+    'https://pyxis.nymag.com/v1/imgs/4f0/715/3a408c4b9fd021860939b94c47251a521d-wandavision.rsquare.w400.jpg',
+    'https://suddhnews.in/content/images/2022/07/Shraddha-Kapoor.jpg',
+    'https://www.arabiaweddings.com/sites/default/files/styles/max980/public/tips/2016/05/bollywood_beauty.jpg?itok=GyypDgAm'
   ];
-
-  void showNextImage() {
-    setState(() {
-      if (selectedIndex! < imageList.length - 1) {
-        selectedIndex = selectedIndex! + 1;
-      } else {
-        selectedIndex = 0;
-      }
-    });
-  }
-
-  String str = 'Next';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amberAccent,
       appBar: AppBar(
-        title: const Text('Display Image'),
+        title: const Text(
+          'ImageApp',
+          style: TextStyle(
+            fontSize: 30,
+          ),
+        ),
+        backgroundColor: Colors.green,
       ),
-      body: Center(
+      body: SizedBox(
+        width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 50,
+            ),
             Image.network(
-              imageList[selectedIndex!],
-              width: 300,
-              height: 300,
+              imageList[index],
+              height: 250,
+              width: 250,
             ),
             const SizedBox(
-              height: 20,
+              height: 30,
             ),
-            ElevatedButton(
-              onPressed: showNextImage,
-              child: Text(str),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
+            // Next Button
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  selectedIndex = 0;
+                  index++;
+                  if (index == imageList.length) {
+                    index = imageList.length - 1;
+                    label = 'last image!';
+                  }
+                });
+              },
+              child: const Text('Next'),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            // Reset Button
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  index = 0;
+                  label = '';
                 });
               },
               child: const Text('Reset'),
-            )
+            ),
           ],
         ),
       ),
