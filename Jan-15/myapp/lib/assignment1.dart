@@ -31,22 +31,38 @@ class _Assignment1State extends State<Assignment1> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Table of 2'),
+        backgroundColor: Colors.orange,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Click on button to print table value'),
+            const Text(
+              'Click on button to print table value',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
-            Text("$_count"),
+            Text(
+              "$_count",
+              style: const TextStyle(
+                fontSize: 20,
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: _printTable,
-              child: const Text('Print'),
+              child: const Text(
+                'Print',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
             ),
           ],
         ),
